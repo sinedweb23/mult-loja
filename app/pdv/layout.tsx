@@ -33,7 +33,6 @@ import { CaixaContext } from './caixa-context'
 export default function PdvLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   const pathname = usePathname()
-  const supabase = createClient()
   const [checking, setChecking] = useState(true)
   const [caixaAberto, setCaixaAberto] = useState<Caixa | null>(null)
   const [mostrarDialogAbertura, setMostrarDialogAbertura] = useState(false)
@@ -58,10 +57,11 @@ export default function PdvLayout({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     verificarAcesso()
-  }, [router, supabase.auth])
+  }, [router])
 
   async function verificarAcesso() {
     try {
+      const supabase = createClient()
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) {
         router.replace('/login')
@@ -143,6 +143,7 @@ export default function PdvLayout({ children }: { children: React.ReactNode }) {
 
   async function handleLogout() {
     try {
+      const supabase = createClient()
       await supabase.auth.signOut()
       router.push('/login')
       router.refresh()

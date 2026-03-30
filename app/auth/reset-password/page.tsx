@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
@@ -11,7 +11,6 @@ import Link from 'next/link'
 
 export default function ResetPasswordClient() {
   const router = useRouter()
-  const supabase = useMemo(() => createClient(), [])
 
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -34,6 +33,7 @@ export default function ResetPasswordClient() {
 
     async function init() {
       try {
+        const supabase = createClient()
         // 1) Verificar hash da URL primeiro (Supabase pode passar tokens via hash)
         const hash = window.location.hash
 
@@ -110,7 +110,7 @@ export default function ResetPasswordClient() {
     return () => {
       cancelled = true
     }
-  }, [supabase])
+  }, [])
 
   async function handleResetPassword(e: React.FormEvent) {
     e.preventDefault()
@@ -130,6 +130,7 @@ export default function ResetPasswordClient() {
     }
 
     try {
+      const supabase = createClient()
       // Verificar se há sessão ativa primeiro
       const { data: { session } } = await supabase.auth.getSession()
 

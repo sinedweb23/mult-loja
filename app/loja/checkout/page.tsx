@@ -19,7 +19,6 @@ type CheckoutTipo = 'PEDIDO_LOJA' | 'RECARGA_SALDO'
 export default function CheckoutPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const supabase = createClient()
   const [loading, setLoading] = useState(true)
   const [authOk, setAuthOk] = useState(false)
   const [tipo, setTipo] = useState<CheckoutTipo | null>(null)
@@ -80,6 +79,7 @@ export default function CheckoutPage() {
       : valorTotal
 
   const loadData = useCallback(async () => {
+    const supabase = createClient()
     const { data: { session } } = await supabase.auth.getSession()
     if (!session) {
       router.push('/login')
@@ -132,7 +132,7 @@ export default function CheckoutPage() {
     } finally {
       setLoading(false)
     }
-  }, [router, searchParams, supabase.auth])
+  }, [router, searchParams])
 
   useEffect(() => {
     loadData()

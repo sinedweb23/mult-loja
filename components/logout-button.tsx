@@ -7,12 +7,12 @@ import { useState } from 'react'
 
 export function LogoutButton() {
   const router = useRouter()
-  const supabase = createClient()
   const [loading, setLoading] = useState(false)
 
   async function handleLogout() {
     setLoading(true)
     try {
+      const supabase = createClient()
       const { error } = await supabase.auth.signOut()
       if (error) {
         console.error('Erro ao fazer logout:', error)

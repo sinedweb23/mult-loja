@@ -29,7 +29,6 @@ function normalizarAparencia(raw: any): Aparencia {
 export function LojaHeader() {
   const router = useRouter()
   const pathname = usePathname()
-  const supabase = createClient()
 
   const [config, setConfig] = useState<Aparencia>({
     loja_nome: '',
@@ -87,6 +86,7 @@ export function LojaHeader() {
 
   async function handleLogout() {
     try {
+      const supabase = createClient()
       await supabase.auth.signOut()
       router.push('/login')
       router.refresh()

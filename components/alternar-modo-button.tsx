@@ -8,7 +8,6 @@ import Link from 'next/link'
 
 export function AlternarModoButton() {
   const pathname = usePathname()
-  const supabase = createClient()
   const [ehAdmin, setEhAdmin] = useState(false)
   const [ehResponsavel, setEhResponsavel] = useState(false)
   const [loading, setLoading] = useState(true)
@@ -19,6 +18,7 @@ export function AlternarModoButton() {
 
   async function verificarPermissoes() {
     try {
+      const supabase = createClient()
       const { data: { user } } = await supabase.auth.getUser()
       if (!user) return
 

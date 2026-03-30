@@ -34,7 +34,6 @@ export default function LoginPage() {
   const [logoErro, setLogoErro] = useState(false)
   const [acessoIndisponivel, setAcessoIndisponivel] = useState(false)
   const router = useRouter()
-  const supabase = createClient()
 
   useEffect(() => {
     obterConfiguracaoAparencia()
@@ -96,6 +95,7 @@ export default function LoginPage() {
     }
 
     try {
+      const supabase = createClient()
       console.log('Tentando fazer login com email:', email)
       const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
         email: email.trim(),
@@ -209,6 +209,7 @@ export default function LoginPage() {
     setLoading(true)
     setError(null)
     try {
+      const supabase = createClient()
       const redirectTo = `${getAuthCallbackUrl()}?flow=google`
       const { error: oauthError } = await supabase.auth.signInWithOAuth({
         provider: 'google',
