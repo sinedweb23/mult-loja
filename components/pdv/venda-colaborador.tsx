@@ -119,10 +119,13 @@ export function VendaColaborador({ caixa, ativa = false }: VendaColaboradorProps
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (listaBuscaRef.current && !listaBuscaRef.current.contains(e.target as Node)) {
+      const target = e.target
+      const listaBusca = listaBuscaRef.current
+      const colaboradorBusca = colaboradorBuscaRef.current
+      if (listaBusca && (!(target instanceof Node) || !listaBusca.contains(target))) {
         setMostrarListaBusca(false)
       }
-      if (colaboradorBuscaRef.current && !colaboradorBuscaRef.current.contains(e.target as Node)) {
+      if (colaboradorBusca && (!(target instanceof Node) || !colaboradorBusca.contains(target))) {
         setColaboradoresEncontrados([])
       }
     }

@@ -87,7 +87,10 @@ function ControlePageContent() {
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (comboboxRef.current && !comboboxRef.current.contains(e.target as Node)) {
+      const container = comboboxRef.current
+      const target = e.target
+      if (!container) return
+      if (!(target instanceof Node) || !container.contains(target)) {
         setComboboxAberto((prev) => {
           const next = { ...prev }
           Object.keys(next).forEach((k) => { next[k] = false })

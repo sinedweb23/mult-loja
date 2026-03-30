@@ -96,7 +96,10 @@ export function VendaDireta({ caixa, ativa = false }: VendaDiretaProps) {
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (listaBuscaRef.current && !listaBuscaRef.current.contains(e.target as Node)) {
+      const container = listaBuscaRef.current
+      const target = e.target
+      if (!container) return
+      if (!(target instanceof Node) || !container.contains(target)) {
         setMostrarListaBusca(false)
       }
     }

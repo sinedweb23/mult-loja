@@ -166,10 +166,13 @@ export function VendaAluno({ caixa, ativa = false }: VendaAlunoProps) {
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (listaBuscaRef.current && !listaBuscaRef.current.contains(e.target as Node)) {
+      const target = e.target
+      const listaBusca = listaBuscaRef.current
+      const alunoBusca = alunoBuscaRef.current
+      if (listaBusca && (!(target instanceof Node) || !listaBusca.contains(target))) {
         setMostrarListaBusca(false)
       }
-      if (alunoBuscaRef.current && !alunoBuscaRef.current.contains(e.target as Node)) {
+      if (alunoBusca && (!(target instanceof Node) || !alunoBusca.contains(target))) {
         setAlunosEncontrados([])
       }
     }
