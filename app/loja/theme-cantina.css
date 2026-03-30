@@ -1,0 +1,82 @@
+/**
+ * Design System - Cantina Escolar
+ * Apenas apresentação. Mobile-first, clean + school friendly.
+ */
+.cantina-theme {
+  /* Paleta */
+  --cantina-primary: #0B5ED7;
+  --cantina-primary-hover: #0a58c9;
+  --cantina-accent: #FF8A00;
+  --cantina-accent-hover: #e67d00;
+  --cantina-success: #16A34A;
+  --cantina-danger: #DC2626;
+  --cantina-background: #F5F7FB;
+  --cantina-card: #FFFFFF;
+  --cantina-text: #0F172A;
+  --cantina-text-muted: #334155;
+  --cantina-border: #E2E8F0;
+
+  /* Tokens para Tailwind (HSL para uso com hsl(var())) */
+  --background: 220 20% 97%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --primary: 214 90% 45%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222 47% 11%;
+  --muted: 220 14% 96%;
+  --muted-foreground: 215 16% 47%;
+  --accent: 33 100% 50%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 214 32% 91%;
+  --ring: 214 90% 45%;
+
+  /* Spacing */
+  --cantina-space-1: 0.25rem;
+  --cantina-space-2: 0.5rem;
+  --cantina-space-3: 0.75rem;
+  --cantina-space-4: 1rem;
+  --cantina-space-5: 1.25rem;
+  --cantina-space-6: 1.5rem;
+  --cantina-space-8: 2rem;
+  --cantina-space-10: 2.5rem;
+
+  /* Radius */
+  --cantina-radius-sm: 0.375rem;
+  --cantina-radius: 0.75rem;
+  --cantina-radius-lg: 1rem;
+  --cantina-radius-xl: 1.25rem;
+  --radius: 0.75rem;
+
+  /* Shadow */
+  --cantina-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --cantina-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.08);
+  --cantina-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+  --cantina-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+}
+
+.cantina-theme {
+  background-color: var(--cantina-background);
+  color: var(--cantina-text);
+}
+
+/* Transições leves */
+.cantina-theme .cantina-card-hover {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.cantina-theme .cantina-card-hover:hover {
+  box-shadow: var(--cantina-shadow-md);
+}
+.cantina-theme .cantina-card-hover:active {
+  transform: scale(0.99);
+}
+
+.cantina-theme .cantina-btn-transition {
+  transition: background-color 0.2s ease, transform 0.05s ease;
+}
+.cantina-theme .cantina-btn-transition:active {
+  transform: scale(0.98);
+}
