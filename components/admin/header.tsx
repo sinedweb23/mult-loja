@@ -21,7 +21,6 @@ type Aparencia = {
 export function AdminHeader() {
   const router = useRouter()
   const pathname = usePathname()
-  const supabase = createClient()
 
   const [config, setConfig] = useState<Aparencia>({
     loja_nome: '',
@@ -56,6 +55,7 @@ export function AdminHeader() {
 
   async function handleLogout() {
     try {
+      const supabase = createClient()
       await supabase.auth.signOut()
       router.push('/login')
       router.refresh()
